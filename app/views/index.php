@@ -9,11 +9,11 @@
     <title>Sitatvegg - Enhjørningen!</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -30,15 +30,15 @@
         Simen A. W. Olsen (hint: Sjekk «Vi som er på landstinget»).</p>
       </center><br /><br />
       <? foreach(DB::table('vegg')->orderBy('id', 'desc')->get() as $sitat): ?>
-      <div class="jumbotron row">
+      <div class="quote row">
         <div class="col-md-2">
-          <div style="border-radius: 80px; width: 150px; height: 150px; background: url('<?=!empty($sitat['imgurl']) ? $sitat['imgurl'] : "img/bg.jpg"?>') top center; -webkit-background-size:\
- cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+          <div class="picture" style="background-image: url('<?=!empty($sitat['imgurl']) ? $sitat['imgurl'] : "img/bg.jpg"?>');">
           </div>
         </div>
         <div class="col-md-10">
           <blockquote>
-            <b>&laquo;</b><?=$sitat['quote']?><b>&raquo;</b><br />
+            <i class="fa fa-quote-left"></i>
+            <?=$sitat['quote']?><br />
             <small class="pull-right"><?=$sitat['owner']?>, <?=$sitat['location'] ? $sitat['location'] : "Landstinget 2013" ?></small>
           </blockquote>
         </div>
