@@ -32,7 +32,7 @@
       <? foreach(DB::table('vegg')->orderBy('id', 'desc')->get() as $sitat): ?>
       <div class="jumbotron row">
         <div class="col-md-2">
-          <div style="border-radius: 80px; width: 150px; height: 150px; background: url('<?=$row['imgurl'] ? $row['imgurl'] : "img/bg.jpg"?>') top center; -webkit-background-size:\
+          <div style="border-radius: 80px; width: 150px; height: 150px; background: url('<?=!empty($sitat['imgurl']) ? $sitat['imgurl'] : "img/bg.jpg"?>') top center; -webkit-background-size:\
  cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
           </div>
         </div>
