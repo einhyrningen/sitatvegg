@@ -1,0 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=IM+Fell+English);
+body, html {
+	background: #6e184b;
+	color: #FFF;
+}
+blockquote {
+	font-family: 'IM Fell English', serif;
+	font-size: 26px;
+	font-weight: bold;
+	line-height: 26px;
+	color: #000;
+}
+.jumbotron {
+	padding: 15px;
+	background: #FFF;
+}
+a,a:hover {
+    color: #FFFFFF;
+}

@@ -1,0 +1,18 @@
+{
+    "name": "cobraz/sitatvegg",
+    "type": "project",
+    "description": "En fantastisk sitatvegg, opprettet for og med Hyperion - Norsk forbund for fantastiske fritidsinteresser.",
+    "keywords": ["sitatvegg"],
+    "homepage": "http://sitatvegg.no/",
+    "license": "GPL-3.0",
+    "require": {
+        "illuminate/database": "5.0.*@dev",
+        "illuminate/events": "5.0.*@dev"
+    },
+    "autoload": {
+        "classmap": [
+            "app/libraries"
+        ]
+    },
+    "minimum-stability": "dev"
+}
