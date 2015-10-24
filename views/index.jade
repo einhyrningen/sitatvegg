@@ -4,7 +4,8 @@ block content
   each quote in quotes
     .quote.row
       blockquote
-        i.fa.fa-quote-left
+        a(href="/vote/" + quote.id, data-toggle="tooltip", data-placement="right", title="Klikk for å stemme! Husk at du kan bare stemme én gang.").box
+          = quote.numVotes
         = quote.quote
         | 
         small #{quote.who}

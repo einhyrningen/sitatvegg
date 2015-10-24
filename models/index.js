@@ -27,6 +27,10 @@ Object.keys(db).forEach(function(modelName) {
 // Define relationships.
 db['Quote'].belongsTo(db['User']);
 db['User'].hasMany(db['Quote']);
+db['Vote'].belongsTo(db['User']);
+db['Vote'].belongsTo(db['Quote']);
+db['User'].hasMany(db['Vote']);
+db['Quote'].hasMany(db['Vote']);
 
 sequelize.sync().then(function(){
   console.log('I am Synchronized, sir.');

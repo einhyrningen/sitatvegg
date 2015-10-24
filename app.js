@@ -27,7 +27,6 @@ app.set('view engine', 'jade');
 
 passport.use(new FacebookStrategy(facebookConfig,
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
   	console.log(profile.displayName + ' ('+ profile.id +') logged on!');
     db.User.findOrCreate({
     	where: {
@@ -103,7 +102,6 @@ app.use(function(req, res, next){
       isAdmin: req.facebookAdmins.indexOf(req.user.identification) !== -1
     };
 
-    console.log(req.user.identification);
     req.user.isAdmin = res.locals.user.isAdmin;
 
     next();
@@ -114,8 +112,6 @@ app.use(function(req, res, next){
       profile: {},
       isAdmin: false
     };
-
-    console.log(res.locals.user);
 
 		next();
 	}
