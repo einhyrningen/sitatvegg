@@ -102,6 +102,7 @@ app.use(function(req, res, next){
       isAdmin: req.facebookAdmins.indexOf(req.user.identification) !== -1
     };
 
+    console.log(req.user.identification);
     req.user.isAdmin = res.locals.user.isAdmin;
 
     next();
