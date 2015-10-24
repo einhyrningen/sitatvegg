@@ -27,16 +27,17 @@ app.set('view engine', 'jade');
 
 passport.use(new FacebookStrategy(facebookConfig,
   function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
   	console.log(profile.displayName + ' ('+ profile.id +') logged on!');
     db.User.findOrCreate({
     	where: {
-    		identification: profile.identification
+    		identification: profile.id
     	},
     	defaults: {
 	    	displayName: profile.displayName,
 			accessToken: accessToken,
 			refreshToken: refreshToken,
-			identification: profile.identification
+			identification: profile.id
 		}
     }).then(function(user){
     	user = user[0];
