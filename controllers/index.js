@@ -4,7 +4,7 @@ module.exports.controller = function(app, ensureAuthenticated) {
 
 	app.get('/', function(req, res, next) {
 		db.Quote.findAll({
-			order: 'id DESC',
+			order: 'createdAt DESC',
 			include: [ db.User ]
 		})
 		.then(function(quotes) {
