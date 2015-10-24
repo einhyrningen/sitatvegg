@@ -1,5 +1,2 @@
-vendor/*
-app/config/*
-app/config/database.php
-
-app/config/database.php
+node_modules/*
+config/*

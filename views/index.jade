@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  each quote in quotes
+    .quote.row
+      blockquote
+        i.fa.fa-quote-left
+        = quote.quote
+        | 
+        small #{quote.who}
+          if user.authenticated && user.isAdmin
+            | &nbsp;
+            | (
+            a(href="/quote/" + quote.id + "/destroy") Slett
+            | )

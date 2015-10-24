@@ -1,0 +1,16 @@
+extends layout
+block content
+	form(method="post").form-horizontal
+		.form-group.form-group-lg
+			.col-sm-10.col-sm-offset-1
+				input(type="text", id="quote", name="quote", placeholder="Noe gøy sagt på landstinget…").form-control
+		.form-group
+			label(for="who").col-md-1.control-label Sitat av?
+			.col-sm-10
+				input(type="text", id="who", name="who", placeholder="Fredrik Vaaheim, til eksempel…").form-control
+		.form-group
+			.col-sm-10.col-sm-offset-1
+				button(type="submit").btn.btn-primary Bidra!
+
+
+		

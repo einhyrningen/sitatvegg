@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/assets/css/bootstrap.css')
+    link(rel='stylesheet', href='/assets/css/style.css')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous")
+  body
+    .container
+      .header.clearfix
+        nav
+          ul.nav.nav-pills.pull-right
+            li.active: a(href="/submit") Send inn ditt bidrag
+            // li: a(href="#") Nyttig
+            li: a(href="https://docs.google.com/spreadsheets/d/1qzgfXaMbR-jzdXxfwczv4er6s3IiAaSCc27aSIaPmqM/pubhtml") Arkivet
+        .profile-box.pull-right(style="text-align: right")
+          if user.authenticated
+            | Hei, 
+            b= user.profile.displayName
+            | ! 
+            br
+            a(href="/logout") Logge ut?
+          else
+            a(href="/auth/facebook") Logg inn med Facebook
+        a(href="/"): img(src="/assets/images/logo.png")
+        img(src="/assets/images/lt2015.png")
+      
+      .content
+        block content
