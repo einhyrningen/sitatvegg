@@ -30,13 +30,13 @@ passport.use(new FacebookStrategy(facebookConfig,
   	console.log(profile.displayName + ' ('+ profile.id +') logged on!');
     db.User.findOrCreate({
     	where: {
-    		identification: profile.id
+    		identification: profile.identification
     	},
     	defaults: {
 	    	displayName: profile.displayName,
 			accessToken: accessToken,
 			refreshToken: refreshToken,
-			identification: profile.id
+			identification: profile.identification
 		}
     }).then(function(user){
     	user = user[0];
