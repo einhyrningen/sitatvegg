@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     displayName: DataTypes.STRING,
     accessToken: DataTypes.STRING,
     refreshToken: DataTypes.STRING,
-    identification: DataTypes.INTEGER
+    identification: DataTypes.BIGINT(255)
   }, {
     classMethods: {
       associate: function(models) {
