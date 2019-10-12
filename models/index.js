@@ -6,15 +6,12 @@ var Sequelize = require('sequelize');
 var env = process.env.NODE_ENV || 'development';
 if (env !== 'production') {
   var config = require(__dirname + '/../config/config.json')[env];
-  var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    {
-      ...config,
-      dialectModule: require('sqlite3'),
-    }
-  );
+  var sequelize = new Sequelize(config.url, {
+    dialect: 'pg',
+    dialectModule: require('pg'),
+    native: true,
+    ssl: true,
+  });
 } else {
   var sequelize = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'pg',
@@ -48,12 +45,6 @@ db['Quote'].hasMany(db['Vote']);
 
 sequelize.sync().then(function() {
   console.log('I am Synchronized, sir.');
-
-  // db.Quote.create({
-  //   userId: 1,
-  //   quote: 'Et bransjetreff uten idioter.',
-  //   who: 'Simen A. W. Olsen'
-  // })
 });
 
 db.sequelize = sequelize;

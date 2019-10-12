@@ -1,23 +1,33 @@
 var db = require('../models');
 
 module.exports.controller = function(app, ensureAuthenticated) {
-  app.get('/', function(req, res, next) {
-    db.Quote.findAll({
-      // order: ['numVotes', 'DESC', 'createdAt', 'DESC'],
-      group: ['Quote.id'],
-      include: [db.User, db.Vote],
-      attributes: {
-        include: [
-          [
-            db.sequelize.fn('COUNT', db.sequelize.col('Votes.QuoteId')),
-            'numVotes',
-          ],
+  app.get('/', async (req, res) => {
+    const quotes = await db.Quote.findAll({
+      order: [
+        [db.sequelize.literal('"numVotes"'), 'DESC'],
+        ['createdAt', 'DESC'],
+      ],
+      // group: ['Quote.id', 'User.id'],
+      include: [
+        //   { model: db.User, required: true },
+        // { model: db.Vote, required: false },
+      ],
+      attributes: [
+        'id',
+        'quote',
+        'who',
+        [
+          db.sequelize.literal(
+            '(SELECT COUNT(*) FROM "Votes" WHERE "Votes"."QuoteId" = "Quote"."id")'
+          ),
+          //   db.sequelize.fn('COUNT', db.sequelize.col('Votes.QuoteId')),
+          'numVotes',
         ],
-      },
-    }).then(function(quotes) {
-      res.render('index', {
-        quotes: quotes,
-      });
+      ],
+    });
+
+    res.render('index', {
+      quotes,
     });
   });
 };

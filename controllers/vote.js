@@ -15,8 +15,8 @@ module.exports.controller = function(app, ensureAuthenticated) {
         } else {
           console.log('Vote was not found. Creating.');
           db.Vote.create({
-            UserId: req.user._id,
-            QuoteId: quote.id,
+            userId: req.user._id,
+            quoteId: quote.id,
           }).then(function() {
             console.log('Created.');
             res.redirect('/');

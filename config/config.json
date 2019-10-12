@@ -1,6 +1,9 @@
 {
   "session": "bobafett",
   "development": {
+    "url": "postgres://ygxtfoymnhmwtt:8a6d0ef570b312b6d85a756faef526e9b75afa6453cbbcbc556ac570cd25206e@ec2-54-246-121-32.eu-west-1.compute.amazonaws.com:5432/dc87dvei8mj807"
+  },
+  "development-sqlite": {
     "dialect": "sqlite",
     "storage": "./db.development.sqlite"
   },
