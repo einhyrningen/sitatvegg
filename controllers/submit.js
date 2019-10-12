@@ -7,8 +7,9 @@ module.exports.controller = function(app, ensureAuthenticated) {
 	});
 
 	app.post('/submit', ensureAuthenticated, function(req, res, next) {
-		req.checkBody('quote', 'Mangler sitatet.').notEmpty();
-		req.checkBody('who', 'Mangler navnet på vedkommende sa dette.').notEmpty();
+		// TODO: Add validation back in.
+		// req.checkBody('quote', 'Mangler sitatet.').notEmpty();
+		// req.checkBody('who', 'Mangler navnet på vedkommende sa dette.').notEmpty();
 		
 		var errors = req.validationErrors();
 		if (errors) {

@@ -23,7 +23,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 
 
@@ -80,7 +80,7 @@ app.use(session({ secret: process.env.SESSION || 'nothin' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(expressValidator());
+// app.use(expressValidator());
 app.use(function(req, res, next){
   if(req.facebookAdmins == undefined){
     require('./libs/getFacebookAdmins')(function(facebookAdmins){

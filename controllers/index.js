@@ -4,8 +4,7 @@ module.exports.controller = function(app, ensureAuthenticated) {
 
 	app.get('/', function(req, res, next) {
 		db.Quote.findAll({
-			order: 'numVotes DESC',
-			order: 'createdAt DESC',
+			// order: ['numVotes', 'DESC', 'createdAt', 'DESC'],
 			group: [
 				'Quote.id'
 			],
