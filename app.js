@@ -15,7 +15,9 @@ var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy
   , facebookConfig = require('./config/facebook.json');
 
-var appConfig = require('./config/config.json');
+if (process.env.FACEBOOK_CLIENT_SECRET) {
+  facebookConfig.clientSecret = process.env.FACEBOOK_CLIENT_SECRET;
+}
 
 var app = express();
 
@@ -74,7 +76,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: appConfig.session }));
+app.use(session({ secret: process.env.SESSION || 'nothin' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());

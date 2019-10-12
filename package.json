@@ -1,6 +1,6 @@
 {
-  "name": "express-example",
-  "version": "0.0.0",
+  "name": "sitatvegg",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
