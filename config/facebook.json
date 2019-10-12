@@ -1,0 +1,5 @@
+{
+  "clientID": "154171734935411",
+  "clientSecret": "Insert client secret, or use FACEBOOK_CLIENT_SECRET as env",
+  "callbackURL": "http://sitatvegg.no/auth/facebook/callback"
+}
