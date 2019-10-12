@@ -1,18 +1,22 @@
-"use strict";
+'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    displayName: DataTypes.STRING,
-    accessToken: DataTypes.STRING,
-    refreshToken: DataTypes.STRING,
-    identification: DataTypes.BIGINT(255)
-  }, {
-    classMethods: {
-      associate: function(models) {
-        User.hasMany(models.Task)
-      }
+  var User = sequelize.define(
+    'User',
+    {
+      displayName: DataTypes.STRING,
+      accessToken: DataTypes.STRING,
+      refreshToken: DataTypes.STRING,
+      identification: DataTypes.BIGINT(255),
+    },
+    {
+      classMethods: {
+        associate: function(models) {
+          User.hasMany(models.Task);
+        },
+      },
     }
-  });
+  );
 
   return User;
 };

@@ -1,53 +1,53 @@
 // Core variables and mixins
-@import "../../node_modules/bootstrap/scss/_variables.scss";
-@import "theme/flatly/variables.scss";
-@import "../../node_modules/bootstrap/scss/_mixins.scss";
+@import '../../node_modules/bootstrap/scss/_variables.scss';
+@import 'theme/flatly/variables.scss';
+@import '../../node_modules/bootstrap/scss/_mixins.scss';
 
 // Reset and dependencies
-@import "../../node_modules/bootstrap/scss/_normalize.scss";
-@import "../../node_modules/bootstrap/scss/_print.scss";
-@import "../../node_modules/bootstrap/scss/_glyphicons.scss";
+@import '../../node_modules/bootstrap/scss/_normalize.scss';
+@import '../../node_modules/bootstrap/scss/_print.scss';
+@import '../../node_modules/bootstrap/scss/_glyphicons.scss';
 
 // Core CSS
-@import "../../node_modules/bootstrap/scss/_scaffolding.scss";
-@import "../../node_modules/bootstrap/scss/_type.scss";
-@import "../../node_modules/bootstrap/scss/_code.scss";
-@import "../../node_modules/bootstrap/scss/_grid.scss";
-@import "../../node_modules/bootstrap/scss/_tables.scss";
-@import "../../node_modules/bootstrap/scss/_forms.scss";
-@import "../../node_modules/bootstrap/scss/_buttons.scss";
+@import '../../node_modules/bootstrap/scss/_scaffolding.scss';
+@import '../../node_modules/bootstrap/scss/_type.scss';
+@import '../../node_modules/bootstrap/scss/_code.scss';
+@import '../../node_modules/bootstrap/scss/_grid.scss';
+@import '../../node_modules/bootstrap/scss/_tables.scss';
+@import '../../node_modules/bootstrap/scss/_forms.scss';
+@import '../../node_modules/bootstrap/scss/_buttons.scss';
 
 // Components
-@import "../../node_modules/bootstrap/scss/_component-animations.scss";
-@import "../../node_modules/bootstrap/scss/_dropdowns.scss";
-@import "../../node_modules/bootstrap/scss/_button-groups.scss";
-@import "../../node_modules/bootstrap/scss/_input-groups.scss";
-@import "../../node_modules/bootstrap/scss/_navs.scss";
-@import "../../node_modules/bootstrap/scss/_navbar.scss";
-@import "../../node_modules/bootstrap/scss/_breadcrumbs.scss";
-@import "../../node_modules/bootstrap/scss/_pagination.scss";
-@import "../../node_modules/bootstrap/scss/_pager.scss";
-@import "../../node_modules/bootstrap/scss/_labels.scss";
-@import "../../node_modules/bootstrap/scss/_badges.scss";
-@import "../../node_modules/bootstrap/scss/_jumbotron.scss";
-@import "../../node_modules/bootstrap/scss/_thumbnails.scss";
-@import "../../node_modules/bootstrap/scss/_alerts.scss";
-@import "../../node_modules/bootstrap/scss/_progress-bars.scss";
-@import "../../node_modules/bootstrap/scss/_media.scss";
-@import "../../node_modules/bootstrap/scss/_list-group.scss";
-@import "../../node_modules/bootstrap/scss/_panels.scss";
-@import "../../node_modules/bootstrap/scss/_responsive-embed.scss";
-@import "../../node_modules/bootstrap/scss/_wells.scss";
-@import "../../node_modules/bootstrap/scss/_close.scss";
+@import '../../node_modules/bootstrap/scss/_component-animations.scss';
+@import '../../node_modules/bootstrap/scss/_dropdowns.scss';
+@import '../../node_modules/bootstrap/scss/_button-groups.scss';
+@import '../../node_modules/bootstrap/scss/_input-groups.scss';
+@import '../../node_modules/bootstrap/scss/_navs.scss';
+@import '../../node_modules/bootstrap/scss/_navbar.scss';
+@import '../../node_modules/bootstrap/scss/_breadcrumbs.scss';
+@import '../../node_modules/bootstrap/scss/_pagination.scss';
+@import '../../node_modules/bootstrap/scss/_pager.scss';
+@import '../../node_modules/bootstrap/scss/_labels.scss';
+@import '../../node_modules/bootstrap/scss/_badges.scss';
+@import '../../node_modules/bootstrap/scss/_jumbotron.scss';
+@import '../../node_modules/bootstrap/scss/_thumbnails.scss';
+@import '../../node_modules/bootstrap/scss/_alerts.scss';
+@import '../../node_modules/bootstrap/scss/_progress-bars.scss';
+@import '../../node_modules/bootstrap/scss/_media.scss';
+@import '../../node_modules/bootstrap/scss/_list-group.scss';
+@import '../../node_modules/bootstrap/scss/_panels.scss';
+@import '../../node_modules/bootstrap/scss/_responsive-embed.scss';
+@import '../../node_modules/bootstrap/scss/_wells.scss';
+@import '../../node_modules/bootstrap/scss/_close.scss';
 
 // Components w/ JavaScript
-@import "../../node_modules/bootstrap/scss/_modals.scss";
-@import "../../node_modules/bootstrap/scss/_tooltip.scss";
-@import "../../node_modules/bootstrap/scss/_popovers.scss";
-@import "../../node_modules/bootstrap/scss/_carousel.scss";
+@import '../../node_modules/bootstrap/scss/_modals.scss';
+@import '../../node_modules/bootstrap/scss/_tooltip.scss';
+@import '../../node_modules/bootstrap/scss/_popovers.scss';
+@import '../../node_modules/bootstrap/scss/_carousel.scss';
 
 // Utility classes
-@import "../../node_modules/bootstrap/scss/_utilities.scss";
-@import "../../node_modules/bootstrap/scss/_responsive-utilities.scss";
+@import '../../node_modules/bootstrap/scss/_utilities.scss';
+@import '../../node_modules/bootstrap/scss/_responsive-utilities.scss';
 
-@import "theme/flatly/bootswatch.scss";
+@import 'theme/flatly/bootswatch.scss';

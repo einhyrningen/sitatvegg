@@ -1,4 +1,4 @@
-@import "theme/flatly/variables.scss";
+@import 'theme/flatly/variables.scss';
 
 .header {
   padding-bottom: 20px;
@@ -6,71 +6,71 @@
 }
 
 .profile-box {
-	clear:both;
-	margin-top: 30px;
+  clear: both;
+  margin-top: 30px;
 }
 
 .nav {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .title {
-	display: inline-block;
-	font-size: 22px;
+  display: inline-block;
+  font-size: 22px;
 }
 
 .content {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 blockquote {
-	font-family: 'IM Fell English', serif;
-	font-size: 26px;
-	font-weight: bold;
-	line-height: 26px;
-	color: #000;
-	margin-top: 30px;
+  font-family: 'IM Fell English', serif;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 26px;
+  color: #000;
+  margin-top: 30px;
 }
 blockquote .fa {
-	color: #6e184b;
-	font-size: 48px;
+  color: #6e184b;
+  font-size: 48px;
 }
 .jumbotron {
-	padding: 15px;
-	background: #FFF;
+  padding: 15px;
+  background: #fff;
 }
 .picture {
-	border-radius: 100px;
-	width: 150px;
-	height: 150px;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: top center;
-	margin: 10px;
-	margin-left: 0px;
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: top center;
+  margin: 10px;
+  margin-left: 0px;
 }
 .quote {
-	height: 180px;
-	width: 100%;
-	border-radius: 100px;
-	background: #FFF;
-	margin-bottom: 20px;
+  height: 180px;
+  width: 100%;
+  border-radius: 100px;
+  background: #fff;
+  margin-bottom: 20px;
 }
 .box {
-	font-family: $font-family-sans-serif;
-	font-size: 35px;
-	background-color: $brand-primary;
-	color: #FFFFFF;
+  font-family: $font-family-sans-serif;
+  font-size: 35px;
+  background-color: $brand-primary;
+  color: #ffffff;
 
-	padding: 17px;
-	display: inline-block;
-	float: left;
-	margin-right: 15px;
-	&:hover {
-		background-color: lighten($brand-primary, 13.5%);
-		color: #FFFFFF;
-		text-decoration: none;
-	}
+  padding: 17px;
+  display: inline-block;
+  float: left;
+  margin-right: 15px;
+  &:hover {
+    background-color: lighten($brand-primary, 13.5%);
+    color: #ffffff;
+    text-decoration: none;
+  }
 }

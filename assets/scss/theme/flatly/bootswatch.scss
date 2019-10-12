@@ -2,10 +2,10 @@
 // Bootswatch
 // -----------------------------------------------------
 
-$web-font-path: "https://fonts.googleapis.com/css?family=IM+Fell+English|Lato:400,700,400italic";
+$web-font-path: 'https://fonts.googleapis.com/css?family=IM+Fell+English|Lato:400,700,400italic';
 
 @mixin web-font($path) {
-  @import url("#{$path}");
+  @import url('#{$path}');
 }
 @include web-font($web-font-path);
 
@@ -15,7 +15,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=IM+Fell+English|Lato:40
   border-width: 0;
 
   &-default {
-
     .badge {
       background-color: #fff;
       color: $navbar-default-bg;
@@ -23,7 +22,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=IM+Fell+English|Lato:40
   }
 
   &-inverse {
-
     .badge {
       background-color: #fff;
       color: $navbar-inverse-bg;
@@ -80,7 +78,6 @@ $web-font-path: "https://fonts.googleapis.com/css?family=IM+Fell+English|Lato:40
 
 table,
 .table {
-
   a:not(.btn) {
     text-decoration: underline;
   }
@@ -124,7 +121,7 @@ table,
 // Forms ======================================================================
 
 .form-control,
-input, {
+input {
   border-width: 2px;
   @include box-shadow(none);
 
@@ -225,10 +222,10 @@ input, {
   }
 
   .disabled {
-    &>a,
-    &>a:hover,
-    &>a:focus,
-    &>span {
+    & > a,
+    & > a:hover,
+    & > a:focus,
+    & > span {
       background-color: $pagination-disabled-bg;
     }
   }
@@ -249,7 +246,6 @@ input, {
 }
 
 .alert {
-
   .alert-link {
     color: #fff;
     text-decoration: underline;
@@ -274,7 +270,6 @@ input, {
 }
 
 a.list-group-item {
-
   &.active,
   &.active:hover,
   &.active:focus {
@@ -296,7 +291,7 @@ a.list-group-item {
     &.active {
       background-color: $state-warning-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($state-warning-bg, 5%);
@@ -307,7 +302,7 @@ a.list-group-item {
     &.active {
       background-color: $state-danger-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($state-danger-bg, 5%);

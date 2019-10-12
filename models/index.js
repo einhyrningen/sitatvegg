@@ -1,27 +1,31 @@
-"use strict";
+'use strict';
 
-var fs        = require("fs");
-var path      = require("path");
-var Sequelize = require("sequelize");
-var env       = process.env.NODE_ENV || "development";
+var fs = require('fs');
+var path = require('path');
+var Sequelize = require('sequelize');
+var env = process.env.NODE_ENV || 'development';
 if (env !== 'production') {
-  var config    = require(__dirname + '/../config/config.json')[env];
-  var sequelize = new Sequelize(config.database, config.username, config.password, {
-    ...config,
-    dialectModule: require('sqlite3')
-  });
+  var config = require(__dirname + '/../config/config.json')[env];
+  var sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    {
+      ...config,
+      dialectModule: require('sqlite3'),
+    }
+  );
 } else {
   var sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: "pg",
-    dialectModule: require("pg")
+    dialect: 'pg',
+    dialectModule: require('pg'),
   });
 }
-var db        = {};
+var db = {};
 
-fs
-  .readdirSync(__dirname)
+fs.readdirSync(__dirname)
   .filter(function(file) {
-    return (file.indexOf(".") !== 0) && (file !== "index.js");
+    return file.indexOf('.') !== 0 && file !== 'index.js';
   })
   .forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
@@ -29,7 +33,7 @@ fs
   });
 
 Object.keys(db).forEach(function(modelName) {
-  if ("associate" in db[modelName]) {
+  if ('associate' in db[modelName]) {
     db[modelName].associate(db);
   }
 });
@@ -42,7 +46,7 @@ db['Vote'].belongsTo(db['Quote']);
 db['User'].hasMany(db['Vote']);
 db['Quote'].hasMany(db['Vote']);
 
-sequelize.sync().then(function(){
+sequelize.sync().then(function() {
   console.log('I am Synchronized, sir.');
 
   // db.Quote.create({

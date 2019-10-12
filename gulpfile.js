@@ -1,19 +1,19 @@
-const { src, dest, parallel } = require("gulp");
+const { src, dest, parallel } = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
-var minifyCSS = require("gulp-clean-css");
+var minifyCSS = require('gulp-clean-css');
 
 function scripts() {
-    return src(['assets/js/**/*.js'])
-        .pipe(concat('scripts.js'))
-        .pipe(dest('public/assets/js'))
+  return src(['assets/js/**/*.js'])
+    .pipe(concat('scripts.js'))
+    .pipe(dest('public/assets/js'));
 }
 
 function styles() {
-    return src(['assets/scss/*.sass'])
-        .pipe(sass())
-        .pipe(minifyCSS())
-        .pipe(dest('public/assets/css'))
+  return src(['assets/scss/*.sass'])
+    .pipe(sass())
+    .pipe(minifyCSS())
+    .pipe(dest('public/assets/css'));
 }
 
 exports.default = parallel(scripts, styles);

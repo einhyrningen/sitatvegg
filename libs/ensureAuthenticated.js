@@ -1,7 +1,7 @@
-module.exports = function(req,res,next) {
+module.exports = function(req, res, next) {
   if (req.isAuthenticated()) {
-    next()
+    next();
   } else {
-    res.redirect('/auth/facebook')
+    res.redirect('/auth/facebook');
   }
-}
+};
