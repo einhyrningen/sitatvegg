@@ -19,6 +19,7 @@
     "express-validator": "^6.2.0",
     "fb": "^2.0.0",
     "gulp-clean-css": "^4.2.0",
+    "gulp-sass": "^4.0.2",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
@@ -32,7 +33,6 @@
     "expect.js": "^0.3.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
-    "gulp-less": "^4.0.1",
     "mocha": "^6.2.1",
     "sqlite3": "^4.1.0",
     "supertest": "^4.0.2"
