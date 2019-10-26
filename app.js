@@ -1,23 +1,22 @@
 var express = require('express'),
-  session = require('express-session');
+  session = require('express-session'),
+  path = require('path'),
+  logger = require('morgan'),
+  cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser'),
+  fs = require('fs'),
+  // db = require('./models'),
+  ensureAuthenticated = require('./libs/ensureAuthenticated'),
+  passport = require('passport'),
+  Auth0Strategy = require('passport-auth0'),
+  dotenv = require('dotenv'),
+  db = require('./models'),
+  admins = require('./config/admins.json'),
+  moment = require('moment');
 
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var fs = require('fs');
-var db = require('./models');
-var ensureAuthenticated = require('./libs/ensureAuthenticated');
+moment.locale('nb');
 
-var passport = require('passport'),
-  FacebookStrategy = require('passport-facebook').Strategy,
-  facebookConfig = require('./config/facebook.json');
-
-if (process.env.FACEBOOK_CLIENT_SECRET) {
-  facebookConfig.clientSecret = process.env.FACEBOOK_CLIENT_SECRET;
-}
+dotenv.config();
 
 var app = express();
 
@@ -26,60 +25,39 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 passport.use(
-  new FacebookStrategy(facebookConfig, function(
-    accessToken,
-    refreshToken,
-    profile,
-    done
-  ) {
-    console.log(profile.displayName + ' (' + profile.id + ') logged on!');
-    db.User.findOrCreate({
-      where: {
-        identification: profile.id,
-      },
-      defaults: {
-        displayName: profile.displayName,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-        identification: profile.id,
-      },
-    }).then(
-      function(user) {
-        user = user[0];
-        user
-          .update({
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-          })
-          .then(function() {
-            done(null, user);
-          });
-      },
-      function(err) {
-        return done(err);
-      }
-    );
-  })
+  new Auth0Strategy(
+    {
+      domain: process.env.AUTH0_DOMAIN,
+      clientID: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      callbackURL:
+        process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/auth/callback',
+    },
+    async (accessToken, refreshToken, extraParams, profile, done) => {
+      const userEmail = profile.email || profile.emails[0].value;
+      const users = await db.User.findOrCreate({
+        where: {
+          email: userEmail,
+        },
+        defaults: {
+          email: userEmail,
+        },
+      });
+      const { id, email } = users[0];
+      const isAdmin = admins.indexOf(id) !== -1;
+      return done(null, { email, id, isAdmin });
+    }
+  )
 );
 
 passport.serializeUser(function(user, done) {
-  done(null, {
-    _id: user.id,
-    displayName: user.displayName,
-    identification: user.identification,
-    accessToken: user.accessToken,
-    refreshToken: user.refreshToken,
-  });
-});
-
-passport.deserializeUser(function(user, done) {
-  // The sessionUser object is different from the user mongoose collection
-  // it's actually req.session.passport.user and comes from the session collection
   done(null, user);
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -88,59 +66,51 @@ app.use(session({ secret: process.env.SESSION || 'nothin' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(expressValidator());
 app.use(function(req, res, next) {
-  if (req.facebookAdmins == undefined) {
-    require('./libs/getFacebookAdmins')(function(facebookAdmins) {
-      req.facebookAdmins = facebookAdmins;
-      console.log(facebookAdmins);
-      next();
-    });
-  } else {
-    next();
-  }
-});
-
-app.use(function(req, res, next) {
+  res.locals.moment = moment;
   if (req.isAuthenticated()) {
-    res.locals.user = {
-      authenticated: true,
-      profile: req.user,
-      isAdmin: req.facebookAdmins.indexOf(req.user.identification) !== -1,
-    };
-
-    req.user.isAdmin = res.locals.user.isAdmin;
-
-    next();
-  } else {
-    res.locals.user = {
-      authenticated: false,
-      profile: {},
-      isAdmin: false,
-    };
-
-    next();
+    res.locals.user = req.user;
   }
+  next();
 });
 
-app.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-  })
-);
-app.get('/auth/facebook', passport.authenticate('facebook'));
+
 app.get(
-  '/auth/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/login',
+  '/auth',
+  passport.authenticate('auth0', {
+    scope: 'openid profile email',
   })
 );
-app.get('/logout', function(req, res) {
+
+app.get('/auth/callback', function(req, res, next) {
+  passport.authenticate('auth0', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect('/login');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      const returnTo = req.session.returnTo;
+      delete req.session.returnTo;
+      res.redirect(returnTo || '/');
+    });
+  })(req, res, next);
+});
+
+app.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+
+  var returnTo = req.protocol + '://' + req.hostname;
+  var port = req.connection.localPort;
+  if (port !== undefined && port !== 80 && port !== 443) {
+    returnTo += ':' + port;
+  }
+  var logoutURL = `https://${process.env.AUTH0_DOMAIN}/v2/logout?client_id=${process.env.AUTH0_CLIENT_ID}&returnTo=${returnTo}`;
+  res.redirect(logoutURL);
 });
 
 var router = express.Router(); // get an instance of the express Router

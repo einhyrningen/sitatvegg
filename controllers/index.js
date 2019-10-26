@@ -4,8 +4,8 @@ module.exports.controller = function(app, ensureAuthenticated) {
   app.get('/', async (req, res) => {
     const quotes = await db.Quote.findAll({
       order: [
-        [db.sequelize.literal('"numVotes"'), 'DESC'],
         ['createdAt', 'DESC'],
+        [db.sequelize.literal('"numVotes"'), 'DESC'],
       ],
       // group: ['Quote.id', 'User.id'],
       include: [
@@ -16,6 +16,7 @@ module.exports.controller = function(app, ensureAuthenticated) {
         'id',
         'quote',
         'who',
+        'createdAt',
         [
           db.sequelize.literal(
             '(SELECT COUNT(*) FROM "Votes" WHERE "Votes"."QuoteId" = "Quote"."id")'

@@ -1,4 +1,5 @@
 var db = require('../models');
+var Joi = require('@hapi/joi');
 
 module.exports.controller = function(app, ensureAuthenticated) {
   app.get('/submit', ensureAuthenticated, function(req, res, next) {
@@ -6,22 +7,24 @@ module.exports.controller = function(app, ensureAuthenticated) {
   });
 
   app.post('/submit', ensureAuthenticated, function(req, res, next) {
-    // TODO: Add validation back in.
-    // req.checkBody('quote', 'Mangler sitatet.').notEmpty();
-    // req.checkBody('who', 'Mangler navnet på vedkommende sa dette.').notEmpty();
+    const schema = Joi.object({
+      quote: Joi.string().required().error(new Error('Mangler sitatet.')),
+      who: Joi.string().required().error(new Error('Mangler navnet på vedkommende som sa det.')),
+    });
 
-    var errors = req.validationErrors();
-    if (errors) {
+    const validation = schema.validate(req.body);
+    
+    if (validation.error) {
       res.render('error', {
         message: 'En feil oppsto!',
         error: {
-          stack: errors[0].msg,
+          stack: validation.error,
         },
       });
       return;
     }
 
-    db.User.findById(req.user._id).then(function(user) {
+    db.User.findByPk(req.user.id).then(function(user) {
       db.Quote.create({
         quote: req.body.quote,
         who: req.body.who,
