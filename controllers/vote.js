@@ -3,7 +3,7 @@ var db = require('../models');
 module.exports.controller = function(app, ensureAuthenticated) {
   app.get('/vote/:id', ensureAuthenticated, function(req, res, next) {
     db.Quote.findByPk(req.params.id).then(function(quote) {
-      db.Vote.find({
+      db.Vote.findOne({
         where: {
           userId: req.user._id,
           quoteId: quote.id,
