@@ -9,7 +9,8 @@ block content
         = quote.quote
         | 
         small #{quote.who}
-          if user.authenticated && user.isAdmin
+          span (#{moment(quote.createdAt).format("D. MMM YYYY [kl.] HH:mm")})
+          if user && user.isAdmin
             | &nbsp;
             | (
             a(href="/quote/" + quote.id + "/destroy") Slett

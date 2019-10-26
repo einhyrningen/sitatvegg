@@ -16,19 +16,20 @@ html
             // li: a(href="#") Nyttig
             li: a(href="https://docs.google.com/spreadsheets/d/1qzgfXaMbR-jzdXxfwczv4er6s3IiAaSCc27aSIaPmqM/pubhtml") Arkivet
         .profile-box.pull-right(style="text-align: right")
-          if user.authenticated
+          if user
             | Hei, 
-            b= user.profile.displayName
+            b= user.email
             | ! 
             br
             a(href="/logout") Logge ut?
           else
-            a(href="/auth/facebook") Logg inn med Facebook
+            a(href="/auth") Logg inn
         a(href="/"): img(src="/assets/images/logo.png")
         img(src="/assets/images/lt2019.png")
       
       .content
         block content
-    if user.authenticated
-      //
-        #{user.identification}
+      center.footer
+        img(src="/assets/images/kolonialen.png",style="width: 400px")
+        br
+        a(href="https://github.com/einhyrningen/sitatvegg/blob/master/privacy.md") Personvernerklæring

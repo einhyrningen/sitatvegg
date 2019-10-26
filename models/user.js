@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       accessToken: DataTypes.STRING,
       refreshToken: DataTypes.STRING,
       identification: DataTypes.INTEGER,
+      email: DataTypes.STRING,
     },
     {
       classMethods: {
