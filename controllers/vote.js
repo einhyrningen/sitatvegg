@@ -5,8 +5,8 @@ module.exports.controller = function(app, ensureAuthenticated) {
     db.Quote.findByPk(req.params.id).then(function(quote) {
       db.Vote.findOne({
         where: {
-          userId: req.user._id,
-          quoteId: quote.id,
+          UserId: req.user.id,
+          QuoteId: quote.id,
         },
       }).then(function(Vote) {
         if (Vote) {
@@ -15,8 +15,8 @@ module.exports.controller = function(app, ensureAuthenticated) {
         } else {
           console.log('Vote was not found. Creating.');
           db.Vote.create({
-            userId: req.user._id,
-            quoteId: quote.id,
+            UserId: req.user.id,
+            QuoteId: quote.id,
           }).then(function() {
             console.log('Created.');
             res.redirect('/');
