@@ -4,7 +4,7 @@
 
 Now completely rewritten in Node.js. Bitch'in.
 
-Add awesome quotes from Hyperions events [https://sitatvegg.no/](here). Have you found a bug? Head over to [our issues page](https://github.com/einhyrningen/sitatvegg/issues). We would get feedback there – that way our communitiy can help and grow! 
+Add awesome quotes from Hyperions events [https://sitatvegg.no/](here). Have you found a bug? Head over to [our issues page](https://github.com/einhyrningen/sitatvegg/issues).
 
 ## Want to contribute?
 
