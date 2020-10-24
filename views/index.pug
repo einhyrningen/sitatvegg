@@ -2,12 +2,12 @@ extends layout
 
 block content
   .alert.alert-success
-    | Stemmegivning fungerer nå! Viste du at Sitatvegg er 
+    | Velkommen til sitatveggen for LT2020! Visste du at Sitatvegg er 
     a(href="https://github.com/einhyrningen/sitatvegg") åpen kildekode?
   each quote in quotes
     .quote.row
       blockquote
-        a(href="/vote/" + quote.id, data-toggle="tooltip", data-placement="right", title="Klikk for å stemme! Husk at du kan bare stemme én gang.").box
+        a(href="/vote/" + quote.id, data-toggle="tooltip", data-placement="right", title="Klikk for å stemme! Husk at du kan bare stemme én gang på hvert sitat.").box
           = quote.numVotes
         = quote.quote
         | 
