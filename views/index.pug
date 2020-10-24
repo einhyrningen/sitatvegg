@@ -12,7 +12,7 @@ block content
         = quote.quote
         | 
         small #{quote.who}
-          span (#{moment(quote.createdAt).format("D. MMM YYYY [kl.] HH:mm")})
+          span (#{moment(quote.createdAt).tz('Europe/Oslo').format("D. MMM YYYY [kl.] HH:mm")})
           if user && user.isAdmin
             | &nbsp;
             | (
